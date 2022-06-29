@@ -6,13 +6,15 @@ using UnityEngine;
 /// </summary>
 public class Paddle : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
+    public static Paddle singleton;
     void Start()
     {
-        
+        singleton = this;
     }
-
+    private void OnDestroy()
+    {
+        singleton = null;
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
