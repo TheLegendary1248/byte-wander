@@ -8,16 +8,17 @@ public class LevelLoader : MonoBehaviour
 {
     static LevelLoader singleton;
     GameObject levelParent; //The scroller thing
-    float scrollSpeed;
+    float y = 0;
+    public float scrollSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        
+        FileWanderer.GetNewPath();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        
+        transform.position = new Vector2(0, y -= scrollSpeed * Time.fixedDeltaTime);
     }
 }

@@ -23,8 +23,8 @@ public class Ball : MonoBehaviour
         {
             Paddle pad = Paddle.singleton;
             float dif = Mathf.Abs(transform.position.x - pad.transform.position.x);
-            if (pad.transform.lossyScale.x > dif * 2f) vel.y *= -1;
-            else { transform.position = Vector2.zero; }
+            if (pad.transform.lossyScale.x > dif * 2f) vel.y *= -1; //Reflect
+            else { transform.position = Vector2.zero; } //Set to center on failure to catch the ball for now
         }
     }
 }
