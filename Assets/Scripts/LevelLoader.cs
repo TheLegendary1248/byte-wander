@@ -14,6 +14,10 @@ public class LevelLoader : MonoBehaviour
     void Start()
     {
         FileWanderer.GetNewPath();
+        FileWanderer.GetNewPath();
+        FileWanderer.GetNewPath();
+        FileWanderer.GetNewPath();
+        FileWanderer.GetNewPath();
     }
 
     // Update is called once per frame
