@@ -13,7 +13,7 @@ public static class FileWanderer
     //Tree of visited paths
     static HashSet<string> visited = new HashSet<string>();
     //Our handle
-    static FileStream currentHandle = null;
+    static BinaryReader currentHandle = null;
     [RuntimeInitializeOnLoadMethod]
     static void Init()
     {
@@ -84,8 +84,22 @@ public static class FileWanderer
         }
         long size = new FileInfo(CurrentPath).Length;
         Debug.Log($"{CurrentPath} is {size} bytes");
-        currentHandle = new FileStream(CurrentPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 4096); 
+        currentHandle = new BinaryReader(new FileStream(CurrentPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)); 
     }
-    
+    public static byte[] GetBytes(int amount)
+    {
+        retry:
+        
+        byte[] read = currentHandle.ReadBytes(amount);
+        if (read.Length == 0)
+        {
+            GetNewPath();
+            goto retry;
+        }
+        byte[] b = new byte[amount]; //Ensures the specified amount of bytes is given
+        read.CopyTo(b, 0);
+        return b;
+
+    }
 
 }

@@ -18,8 +18,6 @@ public class Ball : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
-        Debug.Log((Vector2)transform.localPosition + (vel * Time.fixedDeltaTime));
         transform.Translate(vel * Time.fixedDeltaTime);
         //rbody.MovePosition((Vector2)transform.localPosition + (vel * Time.fixedDeltaTime));
         //Get reflection off paddle
@@ -38,7 +36,6 @@ public class Ball : MonoBehaviour
         {
             if (padXScale > Mathf.Abs(dif * 2f))
             { 
-                Debug.Log(ratio);
                 vel = relectionUnitVec * vel.magnitude;
                 Debug.DrawRay(transform.position, vel, Color.cyan, 3f);
             }

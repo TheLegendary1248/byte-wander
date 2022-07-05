@@ -994,6 +994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0d6631edf697e41bd5e3940a1c9472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 5
+  scrollSpeed: 15
   tempBrickPrefab: {fileID: 7971343297797920302, guid: 8d9375d665acd1b4f9a7d7869ffad75f, type: 3}
   scroller: {fileID: 1945230983}

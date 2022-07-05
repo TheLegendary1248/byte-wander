@@ -37,13 +37,13 @@ public class LevelLoader : MonoBehaviour
     {
         GameObject sec = new GameObject("Section " + section);
         sec.transform.parent = this.transform;
-        sec.transform.localPosition = new Vector2(0f, (section * 8f) + 16f);
+        sec.transform.localPosition = new Vector2(0f, (section * 8f) + 256f);
         section++;
         for (int i = 0; i < 8; i++)
         {
             for (int k = 0; k < 42; k++)
             {
-                Instantiate(tempBrickPrefab, sec.transform).transform.localPosition = new Vector2(k - 20.5f, i);
+                if(FileWanderer.GetBytes(1)[0] > 100) Instantiate(tempBrickPrefab, sec.transform).transform.localPosition = new Vector2(k - 20.5f, i);
             }
         }
     }
