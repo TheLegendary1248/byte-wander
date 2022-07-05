@@ -39,11 +39,11 @@ public class LevelLoader : MonoBehaviour
         sec.transform.parent = this.transform;
         sec.transform.localPosition = new Vector2(0f, (section * 8f) + 16f);
         section++;
-        for (int i = 0; i <= 8; i++)
+        for (int i = 0; i < 8; i++)
         {
-            for (int k = 0; k <= 42; k++)
+            for (int k = 0; k < 42; k++)
             {
-                Instantiate(tempBrickPrefab, sec.transform).transform.localPosition = new Vector2(k - 21, i);
+                Instantiate(tempBrickPrefab, sec.transform).transform.localPosition = new Vector2(k - 20.5f, i);
             }
         }
     }
