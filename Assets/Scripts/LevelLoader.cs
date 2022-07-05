@@ -8,11 +8,12 @@ public class LevelLoader : MonoBehaviour
 {
     static LevelLoader singleton;
     GameObject levelParent; //The scroller thing
-    public float y = 0;
+    public static float y = 0;//FIX THIS
     float scrollOffset = 0;//Offsetter to avoid percision loss. IMPLEMENT LATER
     int section = 0;
     public float scrollSpeed;
     public GameObject tempBrickPrefab;
+    public GameObject scroller;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class LevelLoader : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = new Vector2(0, y -= scrollSpeed * Time.fixedDeltaTime);
+        scroller.transform.position = new Vector2(0, -(y -= scrollSpeed * Time.fixedDeltaTime));
         if (-y > section * 8f) //Create a new section
         {
             CreateNewSectionTemp();
@@ -36,13 +37,13 @@ public class LevelLoader : MonoBehaviour
     {
         GameObject sec = new GameObject("Section " + section);
         sec.transform.parent = this.transform;
-        sec.transform.localPosition = new Vector2(0f, (section * 8f) + 128f);
+        sec.transform.localPosition = new Vector2(0f, (section * 8f) + 16f);
         section++;
         for (int i = 0; i <= 8; i++)
         {
             for (int k = 0; k <= 42; k++)
             {
-                Instantiate(tempBrickPrefab, new Vector2(k - 21, i), Quaternion.identity, sec.transform);
+                Instantiate(tempBrickPrefab, sec.transform).transform.localPosition = new Vector2(k - 21, i);
             }
         }
     }

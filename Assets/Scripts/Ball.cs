@@ -18,7 +18,10 @@ public class Ball : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rbody.MovePosition(rbody.position + (vel * Time.fixedDeltaTime));
+
+        Debug.Log((Vector2)transform.localPosition + (vel * Time.fixedDeltaTime));
+        transform.Translate(vel * Time.fixedDeltaTime);
+        //rbody.MovePosition((Vector2)transform.localPosition + (vel * Time.fixedDeltaTime));
         //Get reflection off paddle
         Paddle pad = Paddle.singleton;
         float dif = transform.position.x - pad.transform.position.x;
@@ -31,7 +34,7 @@ public class Ball : MonoBehaviour
             float heightDif = (26f -(transform.position.y - pad.transform.position.y)) / 26f;
             Debug.DrawLine(transform.position, new Vector2(transform.position.x, pad.transform.position.y), new Color(heightDif,heightDif,heightDif,heightDif));
         }
-        if (col.bounds.min.y < -14.5 & vel.y < 0) //If the ball is below the paddle surface and velocity is going down
+        if (col.bounds.min.y < -14.5 - LevelLoader.y & vel.y < 0) //If the ball is below the paddle surface and velocity is going down. FIX BOOL EVAL
         {
             if (padXScale > Mathf.Abs(dif * 2f))
             { 
@@ -39,7 +42,7 @@ public class Ball : MonoBehaviour
                 vel = relectionUnitVec * vel.magnitude;
                 Debug.DrawRay(transform.position, vel, Color.cyan, 3f);
             }
-            else { transform.position = Vector2.zero; } //Set to center on failure to catch the ball for now
+            else { transform.localPosition = Vector2.zero; } //Set to center on failure to catch the ball for now
         }
     }
     private void Update()

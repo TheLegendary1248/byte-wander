@@ -22,6 +22,6 @@ public class Paddle : MonoBehaviour
         Vector3 pt = cam.ScreenToWorldPoint(Input.mousePosition);
         pt.y = -15;
         pt.z = 0;
-        transform.position = pt;
+        transform.localPosition = pt;
     }
 }
