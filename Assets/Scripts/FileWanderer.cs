@@ -19,7 +19,7 @@ public static class FileWanderer
     {
         Application.quitting += CloseHandle;
     }
-    static void CloseHandle() { if (currentHandle != null) currentHandle.Close(); }
+    static void CloseHandle() { if (currentHandle != null) currentHandle.Close();  }
     public static bool SetPath(string path)
     {
         bool exists = Directory.Exists(path);
@@ -36,7 +36,7 @@ public static class FileWanderer
             throw new System.Exception($"{CurrentPath} : Path no longer exists");
             while (true)//Try to go up
             {
-                //Exception handler code. DO LATER
+                CurrentPath = Directory.GetParent(CurrentPath).FullName;
                 break;
             }
         }
@@ -84,7 +84,7 @@ public static class FileWanderer
         }
         long size = new FileInfo(CurrentPath).Length;
         Debug.Log($"{CurrentPath} is {size} bytes");
-        
+        currentHandle = new FileStream(CurrentPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 4096); 
     }
     
 
