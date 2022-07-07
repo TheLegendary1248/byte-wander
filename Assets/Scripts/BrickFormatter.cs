@@ -6,5 +6,9 @@ using UnityEngine;
 /// </summary>
 public abstract class BrickFormatter
 {
-    public abstract Brick Load(byte[] d);
+    /// <summary>
+    /// This method represents the loading section of the formatter
+    /// </summary>
+    /// <param name="space">The space provided in the given section in brick units</param>
+    public static void Load(int[] space) { }
 }

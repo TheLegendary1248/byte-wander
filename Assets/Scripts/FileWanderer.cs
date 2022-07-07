@@ -99,7 +99,5 @@ public static class FileWanderer
         byte[] b = new byte[amount]; //Ensures the specified amount of bytes is given
         read.CopyTo(b, 0);
         return b;
-
     }
-
 }

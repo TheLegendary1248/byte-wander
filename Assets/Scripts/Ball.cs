@@ -28,8 +28,8 @@ public class Ball : MonoBehaviour
         Vector2 relectionUnitVec = new Vector2(Mathf.Sin(ratio / 2.2f * Mathf.PI), Mathf.Cos(ratio / 2.2f * Mathf.PI));
         if (padXScale > Mathf.Abs(dif * 2f))
         {
-            Debug.DrawRay(new Vector2(transform.position.x, pad.transform.position.y), relectionUnitVec * 4f, Color.red);
             float heightDif = (26f -(transform.position.y - pad.transform.position.y)) / 26f;
+            Debug.DrawRay(new Vector2(transform.position.x, pad.transform.position.y), relectionUnitVec * 4f, new Color(1,0,0,heightDif));
             Debug.DrawLine(transform.position, new Vector2(transform.position.x, pad.transform.position.y), new Color(heightDif,heightDif,heightDif,heightDif));
         }
         if (col.bounds.min.y < -14.5 - LevelLoader.y & vel.y < 0) //If the ball is below the paddle surface and velocity is going down. FIX BOOL EVAL

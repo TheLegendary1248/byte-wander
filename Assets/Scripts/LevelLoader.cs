@@ -10,10 +10,11 @@ public class LevelLoader : MonoBehaviour
     GameObject levelParent; //The scroller thing
     public static float y = 0;//FIX THIS
     float scrollOffset = 0;//Offsetter to avoid percision loss. IMPLEMENT LATER
-    int section = 0;
     public float scrollSpeed;
     public GameObject tempBrickPrefab;
     public GameObject scroller;
+    public static GameObject currentSection { private set; get; }
+    public static int sectionNum { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +26,7 @@ public class LevelLoader : MonoBehaviour
     void FixedUpdate()
     {
         scroller.transform.position = new Vector2(0, -(y -= scrollSpeed * Time.fixedDeltaTime));
-        if (-y > section * 8f) //Create a new section
+        if (-y > sectionNum * 8f) //Create a new section
         {
             CreateNewSectionTemp();
         }
@@ -34,23 +35,11 @@ public class LevelLoader : MonoBehaviour
     /// Creates a new section of the level
     /// </summary>
     void CreateNewSectionTemp()
-    {
-        GameObject sec = new GameObject("Section " + section);
-        sec.transform.parent = this.transform;
-        sec.transform.localPosition = new Vector2(0f, (section * 8f) + 32f);
-        section++;
-        for (int i = 0; i < 8; i++)
-        {
-            for (int k = 0; k < 42; k++)
-            {
-                if (FileWanderer.GetBytes(1)[0] > 100)
-                {
-                    GameObject gb = Instantiate(tempBrickPrefab, sec.transform);
-                    gb.transform.localPosition = new Vector2(k - 20.5f, i);
-                    Brick b = gb.GetComponent<Brick>();
-                    b.boundMin = b.boundMax = new Vector2Int(k - 21, i);
-                }
-            }
-        }
+    {   
+        currentSection = new GameObject("Section " + sectionNum);
+        currentSection.transform.parent = this.transform;
+        currentSection.transform.localPosition = new Vector2(0f, (sectionNum * 8f) + 32f);
+        sectionNum++;
+        TempFormat.Load(new int[]{ 42, 42, 42, 42, 42, 42, 42, 42});
     }
 }

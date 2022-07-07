@@ -14,10 +14,14 @@ public static class BrickManager
     /// <param name="brick"></param>
     public static void RegisterBrick(Brick brick)
     {
+        return;
         //CHECK IF BRICK IS WITHIN PLAYING AREA
         if (brick.boundMax == brick.boundMin)//Avoid the unnecessary looping if it's just one unit in size
         {
-            if (map.ContainsKey(brick.boundMin)) Object.Destroy(brick.gameObject);
+            if (map.ContainsKey(brick.boundMin))
+            {
+                Object.Destroy(brick.gameObject);
+            }
             else map.Add(brick.boundMin, brick);
         }
         else
