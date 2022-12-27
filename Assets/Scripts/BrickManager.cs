@@ -38,6 +38,8 @@ public static class BrickManager
                     if (map.ContainsKey(brick.boundMin))
                     {
                         Object.Destroy(brick.gameObject);
+                        
+                           
                         failed = true;
                         goto failed; //Really, TRY TO STAB ME
                     }
